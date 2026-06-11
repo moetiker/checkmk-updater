@@ -1,0 +1,10 @@
+{
+    "hosts": {
+        "cmk-example1-adm": ["site1"],
+        "cmk-example2-adm": ["site2a", "site2b"]
+    },
+    "master": {
+        "host": "cmk-master-adm",
+        "sites": ["prod"]
+    }
+}

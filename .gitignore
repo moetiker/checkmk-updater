@@ -1,0 +1,7 @@
+.pass
+hosts.json
+CLAUDE.md
+*.deb
+*.rpm
+logs/
+__pycache__/

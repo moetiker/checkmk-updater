@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b45309"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="980" height="620" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <text x="40" y="48" font-size="22" font-weight="700" fill="#0f172a">Checkmk parallel deployment</text>
+  <text x="40" y="72" font-size="13" fill="#64748b">deploy-cmk.py updates every site on every host, in parallel — master always last</text>
+
+  <!-- Checkmk download server -->
+  <rect x="600" y="34" width="340" height="62" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="770" y="60" font-size="15" font-weight="600" fill="#1e3a8a" text-anchor="middle">download.checkmk.com</text>
+  <text x="770" y="80" font-size="12" fill="#1e40af" text-anchor="middle">stable_downloads.json &#183; .deb / .rpm packages</text>
+
+  <!-- Control node -->
+  <rect x="40" y="130" width="300" height="280" rx="10" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+  <rect x="40" y="130" width="300" height="44" rx="10" fill="#334155"/>
+  <rect x="40" y="160" width="300" height="14" fill="#334155"/>
+  <text x="190" y="158" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">deploy-cmk.py  (control node)</text>
+
+  <text x="60" y="202" font-size="13" fill="#0f172a"><tspan font-weight="700" fill="#2563eb">1</tspan>  Fetch available versions</text>
+  <text x="60" y="232" font-size="13" fill="#0f172a"><tspan font-weight="700" fill="#2563eb">2</tspan>  Probe hosts via SSH (OS + site versions)</text>
+  <text x="60" y="262" font-size="13" fill="#0f172a"><tspan font-weight="700" fill="#2563eb">3</tspan>  Download only needed packages</text>
+  <text x="60" y="292" font-size="13" fill="#0f172a"><tspan font-weight="700" fill="#2563eb">4</tspan>  Deploy to all hosts in parallel</text>
+  <text x="60" y="322" font-size="13" fill="#0f172a"><tspan font-weight="700" fill="#2563eb">5</tspan>  Deploy to master host last</text>
+  <text x="60" y="352" font-size="13" fill="#0f172a"><tspan font-weight="700" fill="#2563eb">6</tspan>  Print summary report</text>
+  <text x="60" y="388" font-size="11.5" fill="#64748b">per-host logs in logs/&lt;timestamp&gt;/&lt;host&gt;.log</text>
+
+  <!-- Arrow control -> download server -->
+  <path d="M 190 130 L 190 65 L 592 65" fill="none" stroke="#2563eb" stroke-width="1.8" marker-end="url(#arrow-blue)"/>
+  <text x="210" y="108" font-size="12" fill="#1e40af"><tspan font-weight="700">1</tspan> versions   <tspan font-weight="700">3</tspan> wget packages</text>
+
+  <!-- Host 1 -->
+  <rect x="600" y="130" width="340" height="92" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="618" y="156" font-size="14" font-weight="700" fill="#14532d">cmk-server1</text>
+  <rect x="618" y="168" width="58" height="22" rx="11" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="647" y="183" font-size="11.5" fill="#14532d" text-anchor="middle">site1</text>
+  <text x="618" y="210" font-size="11.5" fill="#475569">scp pkg &#8594; dpkg/rpm &#8594; omd stop &#8594; update &#8594; start &#8594; cleanup</text>
+
+  <!-- Host 2 -->
+  <rect x="600" y="244" width="340" height="92" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="618" y="270" font-size="14" font-weight="700" fill="#14532d">cmk-server2</text>
+  <rect x="618" y="282" width="64" height="22" rx="11" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="650" y="297" font-size="11.5" fill="#14532d" text-anchor="middle">site2a</text>
+  <rect x="690" y="282" width="64" height="22" rx="11" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="722" y="297" font-size="11.5" fill="#14532d" text-anchor="middle">site2b</text>
+  <text x="618" y="324" font-size="11.5" fill="#475569">scp pkg &#8594; dpkg/rpm &#8594; omd stop &#8594; update &#8594; start &#8594; cleanup</text>
+
+  <!-- Parallel arrows -->
+  <path d="M 340 176 L 592 176" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <path d="M 340 290 L 592 290" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="466" y="166" font-size="12" fill="#334155" text-anchor="middle"><tspan font-weight="700">2</tspan> probe   <tspan font-weight="700">4</tspan> deploy (SSH)</text>
+  <text x="466" y="280" font-size="12" fill="#334155" text-anchor="middle"><tspan font-weight="700">2</tspan> probe   <tspan font-weight="700">4</tspan> deploy (SSH)</text>
+  <text x="466" y="236" font-size="12" font-style="italic" fill="#16a34a" text-anchor="middle">in parallel</text>
+
+  <!-- Master host -->
+  <rect x="600" y="380" width="340" height="100" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+  <text x="618" y="406" font-size="14" font-weight="700" fill="#78350f">cmk-master</text>
+  <rect x="704" y="392" width="92" height="20" rx="10" fill="#fde68a" stroke="#b45309"/>
+  <text x="750" y="406" font-size="11" font-weight="600" fill="#78350f" text-anchor="middle">master host</text>
+  <rect x="618" y="420" width="56" height="22" rx="11" fill="#fef3c7" stroke="#b45309"/>
+  <text x="646" y="435" font-size="11.5" fill="#78350f" text-anchor="middle">prod</text>
+  <text x="618" y="462" font-size="11.5" fill="#78350f">same steps, but sequential — only after all other hosts finished</text>
+
+  <!-- Master arrow -->
+  <path d="M 190 410 L 190 430 L 592 430" fill="none" stroke="#b45309" stroke-width="1.8" marker-end="url(#arrow-amber)"/>
+  <text x="466" y="420" font-size="12" fill="#92400e" text-anchor="middle"><tspan font-weight="700">5</tspan> deploy last</text>
+
+  <!-- Summary report -->
+  <rect x="40" y="520" width="900" height="64" rx="10" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="60" y="546" font-size="13" font-weight="700" fill="#312e81">6  Summary report</text>
+  <text x="60" y="568" font-size="12" fill="#3730a3">per-host duration &#183; per-site timing &#183; old &#8594; new version &#183; status (OK / FAILED / SKIPPED / DRY-RUN)</text>
+  <path d="M 120 410 L 120 512" fill="none" stroke="#4f46e5" stroke-width="1.8" marker-end="url(#arrow-blue)" stroke-dasharray="4 3"/>
+</svg>
