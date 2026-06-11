@@ -36,8 +36,8 @@
   <text x="60" y="388" font-size="11.5" fill="#64748b">per-host logs in logs/&lt;timestamp&gt;/&lt;host&gt;.log</text>
 
   <!-- Arrow control -> download server -->
-  <path d="M 190 130 L 190 65 L 592 65" fill="none" stroke="#2563eb" stroke-width="1.8" marker-end="url(#arrow-blue)"/>
-  <text x="210" y="108" font-size="12" fill="#1e40af"><tspan font-weight="700">1</tspan> versions   <tspan font-weight="700">3</tspan> wget packages</text>
+  <path d="M 190 130 L 190 112 L 770 112 L 770 96" fill="none" stroke="#2563eb" stroke-width="1.8" marker-end="url(#arrow-blue)"/>
+  <text x="480" y="106" font-size="12" fill="#1e40af" text-anchor="middle"><tspan font-weight="700">1</tspan> versions   <tspan font-weight="700">3</tspan> wget packages</text>
 
   <!-- Host 1 -->
   <rect x="600" y="130" width="340" height="92" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
