@@ -26,7 +26,7 @@ PKG_EXTENSIONS = (".deb", ".rpm")
 
 # Supported distro keys (must match keys in Checkmk download JSON)
 SUPPORTED_DISTROS = frozenset({
-    "focal", "jammy", "noble",                    # Ubuntu 20.04/22.04/24.04
+    "focal", "jammy", "noble", "resolute",        # Ubuntu 20.04/22.04/24.04/26.04
     "buster", "bullseye", "bookworm",             # Debian 10/11/12
     "el7", "el8", "el9",                          # RHEL/CentOS/Rocky/Alma
     "sles12sp5", "sles15sp3", "sles15sp4",        # SLES
