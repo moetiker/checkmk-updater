@@ -74,6 +74,13 @@ Run the deployment:
 5. Deploys to the central site host last (same steps, but sequential)
 6. Prints a summary report with per-host duration, per-site timing, version changes, and status (OK/FAILED/SKIPPED)
 
+## Disclaimer
+
+This software is provided "as is", without warranty of any kind (see [LICENSE](LICENSE)).
+It stops, updates, and restarts Checkmk sites on production hosts — review what it does
+and always test with `--dry-run` first. Use at your own risk; make sure you have working
+backups before running an update.
+
 ## Logs
 
 Each run creates a timestamped directory under `logs/` with one log file per host:

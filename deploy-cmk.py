@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Parallel deployment of Checkmk updates across multiple hosts.
+
+Detects the OS and current site versions on each host via SSH, downloads
+the matching packages from download.checkmk.com, and updates every site
+within its own major version. All hosts are updated in parallel; the
+central site host is always updated last. See README.md for setup and usage.
+"""
 import concurrent.futures
 import datetime
 import json
