@@ -1,4 +1,4 @@
-# Checkmk Deployment Script
+# Checkmk Update Deployment Script
 
 Automated parallel deployment of Checkmk updates across multiple hosts.
 
@@ -10,7 +10,7 @@ Automated parallel deployment of Checkmk updates across multiple hosts.
 - Detects OS on each host (Ubuntu, Debian, RHEL/CentOS/Rocky, SLES) and downloads the correct package
 - Updates each site within its own major version (e.g. 2.4.0 sites get 2.4.0 updates, 2.5.0 sites get 2.5.0 updates)
 - Supports multiple sites per host
-- Deploys to all hosts in parallel, master host is always updated last
+- Deploys to all hosts in parallel, the central site host is always updated last
 - Live output with `[hostname]` prefix during deployment
 - Per-host log files with timestamps
 - Dry-run mode to preview changes
@@ -33,8 +33,8 @@ Edit `hosts.json` with your hosts and sites:
         "cmk-server1": ["site1"],
         "cmk-server2": ["site2a", "site2b"]
     },
-    "master": {
-        "host": "cmk-master",
+    "central": {
+        "host": "cmk-central",
         "sites": ["prod"]
     }
 }
@@ -71,7 +71,7 @@ Run the deployment:
    - Installs package (dpkg/rpm)
    - For each site: stop, update, start
    - Runs `omd cleanup` to remove unused versions
-5. Deploys to master host last (same steps, but sequential)
+5. Deploys to the central site host last (same steps, but sequential)
 6. Prints a summary report with per-host duration, per-site timing, version changes, and status (OK/FAILED/SKIPPED)
 
 ## Logs

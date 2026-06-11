@@ -66,7 +66,7 @@
   <text x="466" y="280" font-size="12" fill="#334155" text-anchor="middle"><tspan font-weight="700">2</tspan> probe   <tspan font-weight="700">4</tspan> deploy (SSH)</text>
   <text x="466" y="236" font-size="12" font-style="italic" fill="#16a34a" text-anchor="middle">in parallel</text>
 
-  <!-- Master host -->
+  <!-- Central site host -->
   <rect x="600" y="380" width="340" height="100" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
   <text x="618" y="406" font-size="14" font-weight="700" fill="#78350f">cmk-central</text>
   <rect x="710" y="392" width="92" height="20" rx="10" fill="#fde68a" stroke="#b45309"/>
@@ -75,7 +75,7 @@
   <text x="646" y="435" font-size="11.5" fill="#78350f" text-anchor="middle">prod</text>
   <text x="618" y="462" font-size="11.5" fill="#78350f">same steps, but sequential — only after all remote sites finished</text>
 
-  <!-- Master arrow -->
+  <!-- Central site arrow -->
   <path d="M 190 410 L 190 430 L 592 430" fill="none" stroke="#b45309" stroke-width="1.8" marker-end="url(#arrow-amber)"/>
   <text x="466" y="420" font-size="12" fill="#92400e" text-anchor="middle"><tspan font-weight="700">5</tspan> deploy last</text>
 

@@ -28,10 +28,10 @@ SUPPORTED_DISTROS = frozenset({
 
 
 def load_config():
-    """Load host/site config from hosts.json. Returns (hosts_dict, master_host, master_sites)."""
+    """Load host/site config from hosts.json. Returns (hosts_dict, central_host, central_sites)."""
     with open(CONFIG_FILE) as f:
         config = json.load(f)
-    return config["hosts"], config["master"]["host"], config["master"]["sites"]
+    return config["hosts"], config["central"]["host"], config["central"]["sites"]
 
 
 def load_credentials():
@@ -391,7 +391,7 @@ def main():
     if dry_run:
         print("=== DRY RUN ===\n")
 
-    host_sites, master_host, master_sites = load_config()
+    host_sites, central_host, central_sites = load_config()
 
     # Load credentials early to fail fast
     user, password = None, None
@@ -410,7 +410,7 @@ def main():
     print(f"Logs: {log_dir}\n")
 
     # Detect distro and site versions on all hosts in parallel
-    all_hosts = {**host_sites, master_host: master_sites}
+    all_hosts = {**host_sites, central_host: central_sites}
     host_info = {}    # host -> (os_name, pkg_type, site_versions)
     errors = []
     print("--- Detecting OS and site versions ---\n")
@@ -499,7 +499,7 @@ def main():
             sys.exit(1)
     print()
 
-    # Update all hosts in parallel (except master)
+    # Update all hosts in parallel (except the central site host)
     failed = []
     # Collect results: host -> (host_duration, site_results)
     report_data = {}
@@ -526,20 +526,20 @@ def main():
                 report_data[host] = (host_duration, [])
                 failed.append(host)
 
-    # Master is always updated last, separately
-    print("\n--- Updating master ---\n")
-    master_start = time.monotonic()
+    # The central site host is always updated last, separately
+    print("\n--- Updating central site host ---\n")
+    central_start = time.monotonic()
     try:
-        ok, site_results = deploy(master_host, master_sites, host_versions_map[master_host],
-                                  host_info[master_host][2], host_info[master_host][1],
+        ok, site_results = deploy(central_host, central_sites, host_versions_map[central_host],
+                                  host_info[central_host][2], host_info[central_host][1],
                                   log_dir, dry_run)
-        report_data[master_host] = (time.monotonic() - master_start, site_results)
+        report_data[central_host] = (time.monotonic() - central_start, site_results)
         if not ok:
-            failed.append(master_host)
+            failed.append(central_host)
     except Exception as exc:
-        print(f"  [{master_host}] Unexpected error: {exc}")
-        report_data[master_host] = (time.monotonic() - master_start, [])
-        failed.append(master_host)
+        print(f"  [{central_host}] Unexpected error: {exc}")
+        report_data[central_host] = (time.monotonic() - central_start, [])
+        failed.append(central_host)
 
     # Print summary report
     print_report(report_data, all_hosts)
